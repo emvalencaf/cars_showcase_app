@@ -1,8 +1,15 @@
+import CatalogueContainer from "../components/CatalogueContainer";
 import CustomFilter from "../components/CustomFilter";
 import Hero from "../components/Hero";
 import SearchBar from "../components/SearchBar";
+import { fetchCars } from "../utils/fetch-cars";
 
-export default function Home() {
+export default async function Home() {
+  const allCars = await fetchCars();
+
+  const isDataEmpety = !Array.isArray(allCars) || allCars.length === 0 || !allCars;
+
+  console.log(allCars);
   return (
     <main className="overflow-hidden">
       <Hero />
@@ -22,6 +29,17 @@ export default function Home() {
             </div>
 
           </div>
+
+          {!isDataEmpety ? (
+            <CatalogueContainer cars={allCars} />
+          ): (
+            <div className="home__error-container">
+              <h2 className="text-black text-xl font-bold">Oops, no results</h2>
+              <p>
+                {allCars?.message}
+              </p>
+            </div>
+          )}
 
         </div>
       </div>
