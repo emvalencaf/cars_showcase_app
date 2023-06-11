@@ -1,11 +1,28 @@
+
+// components
 import CatalogueContainer from "../components/CatalogueContainer";
 import CustomFilter from "../components/CustomFilter";
 import Hero from "../components/Hero";
 import SearchBar from "../components/SearchBar";
-import { fetchCars } from "../utils/fetch-cars";
 
-export default async function Home() {
-  const allCars = await fetchCars();
+// utils
+import { fuels, yearsOfProduction } from "../constants";
+
+// interfaces
+import { FilterPropsInterface, fetchCars } from "../utils/fetch-cars";
+
+export interface HomePropsInterface {
+  searchParams: FilterPropsInterface;
+}
+
+export default async function Home({ searchParams }: HomePropsInterface) {
+  const allCars = await fetchCars({
+    manufacturer: searchParams.manufacturer || "",
+    year: searchParams.year || 2023,
+    fuel: searchParams.fuel || "",
+    limit: searchParams.limit || 10,
+    model: searchParams.model || "",
+  });
 
   const isDataEmpety = !Array.isArray(allCars) || allCars.length === 0 || !allCars;
 
@@ -24,14 +41,14 @@ export default async function Home() {
             <SearchBar />
 
             <div className="home__filter-container">
-              <CustomFilter title="fuel" />
-              <CustomFilter title="year" />
+              <CustomFilter title="fuel" options={fuels} />
+              <CustomFilter title="year" options={yearsOfProduction} />
             </div>
 
           </div>
 
           {!isDataEmpety ? (
-            <CatalogueContainer cars={allCars} />
+            <CatalogueContainer cars={allCars} searchParams={searchParams} />
           ): (
             <div className="home__error-container">
               <h2 className="text-black text-xl font-bold">Oops, no results</h2>
