@@ -50,8 +50,6 @@ const CarCard = ({ car }: CarCardPropsInterface) => {
             <div className="relative w-full h-40 my-3 object-contain">
                 <Image
                     src={generateCarImageUrl(car)}
-                    width={50}
-                    height={50}
                     alt={"car model"}
                     fill
                     priority
