@@ -63,8 +63,6 @@ export default function Home({ searchParams }: HomePropsInterface) {
     getCars();
   }, [fuel, year, manufacturer, model, limit]);
 
-  const isDataEmpety = !Array.isArray(allCars) || allCars.length === 0 || !allCars;
-
   console.log(allCars);
   return (
     <main className="overflow-hidden">

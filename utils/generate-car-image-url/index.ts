@@ -5,6 +5,8 @@ export const generateCarImageUrl = (car: CarPropsInterface, angle?: string): str
     const url = new URL('https://cdn.imagin.studio/getimage');
 
     const {make, year, model} = car;
+    
+    if (!process.env.NEXT_PUBLIC_IMAGIN_API_KEY) alert('the car images will not be loaded propper for technical issues');
 
     url.searchParams.append('customer', process.env.NEXT_PUBLIC_IMAGIN_API_KEY || "");
     url.searchParams.append('make', make);
