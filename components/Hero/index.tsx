@@ -1,9 +1,10 @@
 "use client"
 
-import Image from 'next/image';
 
 // components
-import CustomButton from '../CustomButton';
+import Image from 'next/image';
+import { CustomButton } from '..';
+
 
 const Hero = () => {
     // handle a scroll when happens click event

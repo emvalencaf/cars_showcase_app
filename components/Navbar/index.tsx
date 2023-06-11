@@ -1,7 +1,7 @@
 
 // components
-import CustomButton from '../CustomButton';
-import Logo from '../Logo';
+import { CustomButton, Logo } from "..";
+
 
 const Navbar = () => {
     return (

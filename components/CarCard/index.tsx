@@ -2,7 +2,6 @@
 
 // componets
 import Image from "next/image";
-import CustomButton from "../CustomButton";
 
 // utils
 import { calculateCarRent } from "../../utils/calculate-car-rent";
@@ -12,6 +11,7 @@ import { CarPropsInterface } from "../../shared-types/car-props";
 import { useState } from "react";
 import CarDetails from "../CarDetails";
 import { generateCarImageUrl } from "../../utils/generate-car-image-url";
+import { CustomButton } from "..";
 export interface CarCardPropsInterface {
     car: CarPropsInterface;
 }

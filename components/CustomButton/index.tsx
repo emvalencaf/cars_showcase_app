@@ -1,9 +1,10 @@
 "use client"
 
+// components
 import Image from "next/image";
-import { MouseEventHandler } from "react";
 
-// types
+// interfaces
+import { MouseEventHandler } from "react";
 export interface CustomButtonPropsInterface {
     title: string;
     btnType?: "button" | "submit" | "reset";

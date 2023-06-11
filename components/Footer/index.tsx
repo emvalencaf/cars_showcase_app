@@ -1,8 +1,11 @@
 // components
 import Image from "next/image";
 import Link from "next/link";
+import { Logo } from "..";
+
+// utils (constants)
 import { footerLinks } from "../../constants";
-import Logo from "../Logo";
+
 
 
 const Footer = () => {

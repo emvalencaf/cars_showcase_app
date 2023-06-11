@@ -1,5 +1,5 @@
-/// components
-import Navbar from "../Navbar";
+// components
+import { Navbar } from "..";
 
 const Header = () => {
     return (

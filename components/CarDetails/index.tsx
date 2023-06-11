@@ -4,7 +4,6 @@ import { Fragment } from "react";
 import Image from "next/image";
 
 // interfaces
-import { Dispatch, SetStateAction } from "react";
 import { CarPropsInterface } from "../../shared-types/car-props";
 import { Dialog, Transition } from "@headlessui/react";
 import { generateCarImageUrl } from "../../utils/generate-car-image-url";

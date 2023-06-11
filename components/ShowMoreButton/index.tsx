@@ -1,30 +1,23 @@
 "use client";
 
-// hooks
-import { useRouter } from "next/navigation";
-
 // components
-import CustomButton from "../CustomButton";
-import { updateSearchParams } from "../../utils/update-search-params";
+import { CustomButton } from "..";
+import { Dispatch, SetStateAction } from "react";
 
 // interfaces
 export interface ShowMoreButtonPropsInterface {
     pageNumber: number;
     isNext: boolean;
+    setLimit: Dispatch<SetStateAction<number>>;
 }
 
-const ShowMoreButton = ({ pageNumber, isNext }: ShowMoreButtonPropsInterface) => {
-    // get router
-    const router = useRouter();
-
+const ShowMoreButton = ({ pageNumber, isNext, setLimit }: ShowMoreButtonPropsInterface) => {
     // handle navigation
     const handleNavigation = () => {
         
         const newLimit = (pageNumber + 1) * 10;
 
-        const newPathName = updateSearchParams("limit", `${newLimit}`);
-
-        router.push(newPathName);
+        setLimit(newLimit);
     };
 
     return (

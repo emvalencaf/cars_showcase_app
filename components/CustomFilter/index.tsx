@@ -1,35 +1,29 @@
 "use client"
 // hooks
-import { Fragment, useState } from "react";
+import { Dispatch, Fragment, SetStateAction, useState } from "react";
 import { useRouter } from 'next/navigation';
+
+// components
+import Image from "next/image";
 
 // utils
 import { Listbox, Transition } from "@headlessui/react";
-import Image from "next/image";
 import { updateSearchParams } from "../../utils/update-search-params";
 
 // interfaces
 export interface OptionPropsInterface {
     title: string;
-    value: string;
+    value: string | number;
 }
 export interface CustomFilterPropsInterface {
     title: string;
     options: OptionPropsInterface[];
+    setFilter: Dispatch<SetStateAction<string>> | Dispatch<SetStateAction<number>>;
 }
 
-const CustomFilter = ({title, options}: CustomFilterPropsInterface) => {
+const CustomFilter = ({ options, setFilter }: CustomFilterPropsInterface) => {
     // states
     const [selected, setSelected] = useState(options[0]);
-    const router = useRouter();
-
-    const handleUpdateParams = (e: { title: string, value: string}) => {
-        
-        // creating the url with the search params
-        const newPathname = updateSearchParams(e.title, e.value.toLowerCase());
-
-        router.push(newPathname);
-    };
 
     return (
         <div className="w-fit">
@@ -37,7 +31,7 @@ const CustomFilter = ({title, options}: CustomFilterPropsInterface) => {
                 value={selected}
                 onChange={(e) => {
                     setSelected(e);
-                    handleUpdateParams(e);
+                    setFilter(e.value);
                 }}
             >
                 <div className="relative w-fit z-10">
