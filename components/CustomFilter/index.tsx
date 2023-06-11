@@ -15,13 +15,12 @@ export interface OptionPropsInterface {
     title: string;
     value: string | number;
 }
-export interface CustomFilterPropsInterface {
-    title: string;
+export interface CustomFilterPropsInterface<T> {
     options: OptionPropsInterface[];
-    setFilter: Dispatch<SetStateAction<string>> | Dispatch<SetStateAction<number>>;
+    setFilter: (selected: T) => void;
 }
 
-const CustomFilter = ({ options, setFilter }: CustomFilterPropsInterface) => {
+const CustomFilter = <T, >({ options, setFilter }: CustomFilterPropsInterface<T>) => {
     // states
     const [selected, setSelected] = useState(options[0]);
 
@@ -31,7 +30,7 @@ const CustomFilter = ({ options, setFilter }: CustomFilterPropsInterface) => {
                 value={selected}
                 onChange={(e) => {
                     setSelected(e);
-                    setFilter(e.value);
+                    setFilter(e.value as unknown as T);
                 }}
             >
                 <div className="relative w-fit z-10">

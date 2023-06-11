@@ -8,7 +8,13 @@ import { CustomButton } from '..';
 
 const Hero = () => {
     // handle a scroll when happens click event
-    const handleScroll = () => { };
+    const handleScroll = () => {
+        const nextSection = document.getElementById('discover');
+
+        if (nextSection) nextSection.scrollIntoView({
+            behavior: 'smooth',
+        });
+    };
     return (
         <div className='hero'>
             <div className='flex-1 pt-36 padding-x'>
